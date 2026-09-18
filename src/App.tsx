@@ -12,6 +12,8 @@ import { RecognitionShowcase } from './components/RecognitionShowcase';
 import { SeeWhereYouStand } from './components/SeeWhereYouStand';
 import { StrongerTogether } from './components/StrongerTogether';
 import { FinalCTA } from './components/FinalCTA';
+import { FAQSection } from './components/FAQSection';
+import { Footer } from './components/Footer';
 import { GetStartedModal } from './components/GetStartedModal';
 
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother, useGSAP);
@@ -70,6 +72,10 @@ export default function App() {
           <StrongerTogether />
 
           <FinalCTA onOpenGetStarted={() => setIsGetStartedOpen(true)} />
+
+          <FAQSection />
+
+          <Footer />
 
           {/* Other sections land here later */}
         </div>

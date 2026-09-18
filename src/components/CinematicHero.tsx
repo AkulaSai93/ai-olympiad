@@ -1,8 +1,9 @@
 import React, { useCallback, useRef, useState } from 'react';
-import { ArrowRight } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { FloatingNav } from './FloatingNav';
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -252,18 +253,8 @@ export const CinematicHero: React.FC<CinematicHeroProps> = ({ onOpenGetStarted, 
           }}
         />
 
-        {/* Minimal top nav */}
-        <div className="absolute top-0 left-0 right-0 z-20 flex items-center justify-end px-6 sm:px-10 py-6">
-          <button
-            onClick={onOpenGetStarted}
-            className="group bg-white text-black hover:bg-neutral-100 pl-5 pr-1.5 py-1.5 rounded-full text-xs sm:text-sm font-semibold transition-all duration-300 flex items-center gap-3 shadow-xl cursor-pointer"
-          >
-            <span>Register Free</span>
-            <div className="w-7 h-7 rounded-full bg-black flex items-center justify-center transition-transform group-hover:translate-x-0.5">
-              <ArrowRight className="w-3.5 h-3.5 stroke-[2.5] text-white" />
-            </div>
-          </button>
-        </div>
+        {/* Floating logo + register + hamburger nav */}
+        <FloatingNav onOpenGetStarted={onOpenGetStarted} />
 
         {/* Hero content */}
         <div
@@ -273,7 +264,7 @@ export const CinematicHero: React.FC<CinematicHeroProps> = ({ onOpenGetStarted, 
         >
           <h1
             ref={headlineRef}
-            className="font-serif-display text-5xl sm:text-7xl md:text-8xl leading-[0.98] tracking-tight max-w-5xl origin-center"
+            className="font-grotesque font-semibold text-5xl sm:text-7xl md:text-8xl leading-[0.98] tracking-tight max-w-5xl origin-center"
             style={{ willChange: 'transform' }}
           >
             The next generation of <span className="text-red-600">AI thinkers</span> starts here.
@@ -289,11 +280,12 @@ export const CinematicHero: React.FC<CinematicHeroProps> = ({ onOpenGetStarted, 
           <div ref={ctaRef} className="mt-10 flex items-center gap-5" style={{ willChange: 'opacity' }}>
             <button
               onClick={onOpenGetStarted}
-              className="bg-red-600 text-white px-7 py-3 rounded-full text-sm font-semibold hover:bg-red-500 transition-colors cursor-pointer"
+              className="group inline-flex items-center gap-2 bg-[#e7000b] text-white font-grotesque font-semibold text-sm pl-3.5 pr-3 py-3 hover:bg-red-700 transition-colors cursor-pointer"
             >
               Register Free
+              <ArrowUpRight className="w-5 h-5 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </button>
-            <button className="border border-white/40 text-white px-7 py-3 rounded-full text-sm font-semibold hover:bg-white/10 hover:border-white/60 transition-colors cursor-pointer">
+            <button className="text-white font-grotesque font-semibold text-sm px-6 py-3 hover:text-white/80 transition-colors cursor-pointer">
               Explore the Olympiad
             </button>
           </div>

@@ -1,36 +1,21 @@
 import React from 'react';
 import { ArrowUpRight } from 'lucide-react';
 
-const stringSvg = '/images/cta-string.svg';
-const pinSvg = '/images/cta-pin-1.svg';
-
-const iconAi = '/images/cta-icon-ai.png';
-const iconCode = '/images/cta-icon-code.png';
-const iconMath = '/images/cta-icon-math.png';
-const iconLogic = '/images/cta-icon-logic.png';
-const iconCompete = '/images/cta-icon-compete.png';
-
-interface HangingCard {
-  icon: string;
-  title: string;
-  subtitle: string;
-  // Center position of the (unrotated) 194x194 card, as a percentage of the
-  // dark panel's 1280x563 reference box — derived from Figma's absolute
-  // pixel boxes so the "sagging clothesline" layout scales with the panel.
-  leftPct: number;
-  topPct: number;
-  rotate: number;
+interface CountdownUnit {
+  value: string;
+  label: string;
+  bg: string;
 }
 
-const CARDS: HangingCard[] = [
-  { icon: iconCompete, title: 'Compete', subtitle: 'Be among the best', leftPct: 2.85, topPct: 56.42, rotate: 19.16 },
-  { icon: iconMath, title: 'Math', subtitle: 'Think deeper', leftPct: 24.71, topPct: 69.36, rotate: 13.01 },
-  { icon: iconAi, title: 'AI', subtitle: 'Build the future', leftPct: 50, topPct: 73.89, rotate: 0 },
-  { icon: iconCode, title: 'Code', subtitle: 'Solve real problem', leftPct: 73.11, topPct: 69.36, rotate: -13.01 },
-  { icon: iconLogic, title: 'Logic', subtitle: 'Sharpen your mind', leftPct: 94.94, topPct: 57.86, rotate: -19.16 },
+const UNITS: CountdownUnit[] = [
+  { value: '90', label: 'Days', bg: '#34a853' },
+  { value: '12', label: 'Hours', bg: '#e8a838' },
+  { value: '24', label: 'Minutes', bg: '#4286f5' },
 ];
 
-const CARD_SIZE = 194;
+// Repeated enough times that one copy already overflows the viewport, so the
+// marquee-track's translateX(-50%) loop point is never visibly short of text.
+const MARQUEE_REPEAT = 6;
 
 interface FinalCTAProps {
   onOpenGetStarted: () => void;
@@ -39,89 +24,66 @@ interface FinalCTAProps {
 export const FinalCTA: React.FC<FinalCTAProps> = ({ onOpenGetStarted }) => {
   return (
     <section className="relative w-full bg-white py-16 sm:py-20 lg:py-28">
-      <div className="w-full px-6 sm:px-10 lg:px-[120px]">
-        <div className="relative w-full lg:h-[563px] rounded-[28px] bg-[#151615] overflow-hidden px-6 py-16 sm:py-20 lg:p-0">
-          {/* Headline + CTA */}
-          <div className="relative lg:absolute lg:left-1/2 lg:-translate-x-1/2 lg:top-[50px] flex flex-col gap-8 sm:gap-10 items-center max-w-[557px] mx-auto lg:w-[557px] text-center z-10">
-            <div className="flex flex-col gap-4 sm:gap-5 items-center text-center w-full">
-              <p className="font-grotesque font-semibold text-3xl sm:text-4xl lg:text-[40px] leading-tight text-white">
-                Ready to <span className="text-[#e7000b]">challenge</span> yourself?
+      <div className="w-full px-6 sm:px-10 lg:px-[120px] flex flex-col lg:flex-row gap-12 lg:gap-[97px] items-center lg:items-center">
+        <div className="flex flex-col gap-8 sm:gap-10 items-start w-full lg:w-[557px] shrink-0">
+          <div className="flex flex-col gap-4 sm:gap-5 items-start w-full">
+            <p className="font-grotesque font-semibold text-3xl sm:text-4xl lg:text-[40px] leading-tight text-[#0a0a0b]">
+              Ready to <span className="text-[#e7000b]">challenge</span> yourself?
+            </p>
+            <p className="font-grotesque text-base sm:text-lg text-[#0a0a0b]/80">
+              Step into the challenge, test your thinking, and see where you stand among students
+              across India.
+            </p>
+          </div>
+
+          <button
+            onClick={onOpenGetStarted}
+            className="group inline-flex items-center gap-2 w-fit bg-[#e7000b] text-white font-grotesque font-semibold text-base pl-3.5 pr-3 py-3 hover:bg-red-700 transition-colors cursor-pointer"
+          >
+            Register Free
+            <ArrowUpRight className="w-5 h-5 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          </button>
+        </div>
+
+        <div className="flex gap-4 sm:gap-[28px] items-center w-full lg:w-auto justify-center">
+          {UNITS.map((unit, i) => (
+            <div
+              key={i}
+              className="flex flex-col items-center justify-center gap-3 w-[90px] sm:w-[140px] lg:w-[190px] h-[146px] sm:h-[230px] lg:h-[308px] shrink-0"
+              style={{ backgroundColor: unit.bg }}
+            >
+              <p className="font-grotesque font-extrabold text-[40px] sm:text-[64px] lg:text-[96px] leading-none text-white">
+                {unit.value}
               </p>
-              <p className="font-grotesque text-base sm:text-lg text-white/80">
-                Step into the challenge, test your thinking, and see where you stand among
-                students across India.
+              <p className="font-grotesque font-medium text-sm sm:text-lg lg:text-2xl text-white">
+                {unit.label}
               </p>
             </div>
+          ))}
+        </div>
+      </div>
 
-            <button
-              onClick={onOpenGetStarted}
-              className="group inline-flex items-center gap-2 w-fit bg-[#e7000b] text-white font-grotesque font-semibold text-base pl-3.5 pr-3 py-3 hover:bg-red-700 transition-colors cursor-pointer"
-            >
-              Register Free
-              <ArrowUpRight className="w-5 h-5 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </button>
-          </div>
-
-          {/* Sagging string + pinned cards — desktop only */}
-          <div className="hidden lg:block absolute inset-0">
-            <img
-              src={stringSvg}
-              alt=""
-              className="absolute left-0 top-[182px] w-full max-w-none h-auto"
-            />
-
-            {CARDS.map((card) => (
-              <div
-                key={card.title}
-                className="absolute"
-                style={{
-                  left: `${card.leftPct}%`,
-                  top: `${card.topPct}%`,
-                  width: CARD_SIZE,
-                  height: CARD_SIZE,
-                  transform: `translate(-50%, -50%) rotate(${card.rotate}deg)`,
-                }}
-              >
-                <img
-                  src={pinSvg}
-                  alt=""
-                  className="absolute left-1/2 -translate-x-1/2 w-8 h-[46px]"
-                  style={{ top: -34 }}
-                />
-                <div className="relative size-full rounded-[24px] bg-white border border-black overflow-hidden flex flex-col items-center justify-center gap-3 pt-3">
-                  <img src={card.icon} alt="" className="w-[70px] h-auto object-contain" />
-                  <div className="flex flex-col items-center gap-1">
-                    <p className="font-grotesque font-semibold text-lg text-[#0a0a0b]">
-                      {card.title}
-                    </p>
-                    <p className="font-grotesque text-sm text-[#0a0a0b] whitespace-nowrap">
-                      {card.subtitle}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Simple icon grid fallback — below lg */}
-          <div className="lg:hidden grid grid-cols-2 sm:grid-cols-3 gap-4 mt-12">
-            {CARDS.map((card) => (
-              <div
-                key={card.title}
-                className="flex flex-col items-center justify-center gap-3 rounded-[20px] bg-white border border-black py-6"
-              >
-                <img src={card.icon} alt="" className="w-14 h-auto object-contain" />
-                <div className="flex flex-col items-center gap-1">
-                  <p className="font-grotesque font-semibold text-base text-[#0a0a0b]">
-                    {card.title}
-                  </p>
-                  <p className="font-grotesque text-xs text-[#0a0a0b] text-center">
-                    {card.subtitle}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
+      <div
+        className="relative w-full overflow-hidden mt-12 sm:mt-16 lg:mt-[60px]"
+        style={{
+          maskImage: 'linear-gradient(to right, transparent, black 8%, black 92%, transparent)',
+          WebkitMaskImage:
+            'linear-gradient(to right, transparent, black 8%, black 92%, transparent)',
+        }}
+      >
+        <div className="marquee-track flex items-center w-max">
+          {[0, 1].map((copy) => (
+            <div key={copy} className="flex items-center shrink-0" aria-hidden={copy === 1}>
+              {Array.from({ length: MARQUEE_REPEAT }).map((_, i) => (
+                <p
+                  key={i}
+                  className="font-grotesque font-bold text-[#e7000b] text-6xl sm:text-8xl lg:text-[120px] tracking-[-1px] sm:tracking-[-1.6px] lg:tracking-[-2.2857px] leading-none whitespace-nowrap mr-6 sm:mr-10 lg:mr-[70px]"
+                >
+                  AI Olympiad
+                </p>
+              ))}
+            </div>
+          ))}
         </div>
       </div>
     </section>
