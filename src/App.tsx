@@ -10,6 +10,8 @@ import { BuiltForTechnology } from './components/BuiltForTechnology';
 import { JourneyTimeline } from './components/JourneyTimeline';
 import { RecognitionShowcase } from './components/RecognitionShowcase';
 import { SeeWhereYouStand } from './components/SeeWhereYouStand';
+import { StrongerTogether } from './components/StrongerTogether';
+import { FinalCTA } from './components/FinalCTA';
 import { GetStartedModal } from './components/GetStartedModal';
 
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother, useGSAP);
@@ -64,6 +66,10 @@ export default function App() {
           <RecognitionShowcase />
 
           <SeeWhereYouStand />
+
+          <StrongerTogether />
+
+          <FinalCTA onOpenGetStarted={() => setIsGetStartedOpen(true)} />
 
           {/* Other sections land here later */}
         </div>
