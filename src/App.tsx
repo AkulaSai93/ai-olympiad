@@ -8,6 +8,7 @@ import { TrustedByMarquee } from './components/TrustedByMarquee';
 import { ValueProps } from './components/ValueProps';
 import { BuiltForTechnology } from './components/BuiltForTechnology';
 import { JourneyTimeline } from './components/JourneyTimeline';
+import { RecognitionShowcase } from './components/RecognitionShowcase';
 import { GetStartedModal } from './components/GetStartedModal';
 
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother, useGSAP);
@@ -58,6 +59,8 @@ export default function App() {
             onOpenGetStarted={() => setIsGetStartedOpen(true)}
             smootherReady={smootherReady}
           />
+
+          <RecognitionShowcase />
 
           {/* Other sections land here later */}
         </div>
