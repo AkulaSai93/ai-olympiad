@@ -1,16 +1,35 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { ArrowUpRight } from 'lucide-react';
 
+// TODO: replace with the real registration deadline.
+const TARGET_DATE = new Date('2026-12-17T00:00:00');
+
+interface RemainingTime {
+  days: number;
+  hours: number;
+  minutes: number;
+}
+
+const getRemainingTime = (): RemainingTime => {
+  const diffMs = Math.max(0, TARGET_DATE.getTime() - Date.now());
+  const days = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((diffMs / (1000 * 60 * 60)) % 24);
+  const minutes = Math.floor((diffMs / (1000 * 60)) % 60);
+  return { days, hours, minutes };
+};
+
+const pad2 = (n: number) => String(n).padStart(2, '0');
+
 interface CountdownUnit {
-  value: string;
+  key: keyof RemainingTime;
   label: string;
   bg: string;
 }
 
 const UNITS: CountdownUnit[] = [
-  { value: '90', label: 'Days', bg: '#34a853' },
-  { value: '12', label: 'Hours', bg: '#e8a838' },
-  { value: '24', label: 'Minutes', bg: '#4286f5' },
+  { key: 'days', label: 'Days', bg: '#34a853' },
+  { key: 'hours', label: 'Hours', bg: '#e8a838' },
+  { key: 'minutes', label: 'Minutes', bg: '#4286f5' },
 ];
 
 // Repeated enough times that one copy already overflows the viewport, so the
@@ -22,6 +41,13 @@ interface FinalCTAProps {
 }
 
 export const FinalCTA: React.FC<FinalCTAProps> = ({ onOpenGetStarted }) => {
+  const [remaining, setRemaining] = useState<RemainingTime>(getRemainingTime);
+
+  useEffect(() => {
+    const interval = setInterval(() => setRemaining(getRemainingTime()), 1000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <section className="relative w-full bg-white py-16 sm:py-20 lg:py-28">
       <div className="w-full px-6 sm:px-10 lg:px-[120px] flex flex-col lg:flex-row gap-12 lg:gap-[97px] items-center lg:items-center">
@@ -46,14 +72,14 @@ export const FinalCTA: React.FC<FinalCTAProps> = ({ onOpenGetStarted }) => {
         </div>
 
         <div className="flex gap-4 sm:gap-[28px] items-center w-full lg:w-auto justify-center">
-          {UNITS.map((unit, i) => (
+          {UNITS.map((unit) => (
             <div
-              key={i}
+              key={unit.key}
               className="flex flex-col items-center justify-center gap-3 w-[90px] sm:w-[140px] lg:w-[190px] h-[146px] sm:h-[230px] lg:h-[308px] shrink-0"
               style={{ backgroundColor: unit.bg }}
             >
               <p className="font-grotesque font-extrabold text-[40px] sm:text-[64px] lg:text-[96px] leading-none text-white">
-                {unit.value}
+                {pad2(remaining[unit.key])}
               </p>
               <p className="font-grotesque font-medium text-sm sm:text-lg lg:text-2xl text-white">
                 {unit.label}
