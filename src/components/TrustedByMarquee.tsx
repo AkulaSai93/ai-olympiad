@@ -8,7 +8,7 @@ const LOGO_STRIP_RATIO = 1974 / 104;
 export const TrustedByMarquee: React.FC = () => {
   return (
     <section className="relative w-full bg-white py-16 sm:py-20 overflow-hidden">
-      <div className="max-w-6xl mx-auto px-6 flex flex-col items-center gap-8 sm:gap-10">
+      <div className="w-full px-6 sm:px-10 lg:px-[120px] flex flex-col items-center gap-8 sm:gap-10">
         {/* Eyebrow: line — label — line */}
         <div className="flex items-center gap-4 w-full max-w-4xl">
           <span className="flex-1 h-px bg-black/15" />

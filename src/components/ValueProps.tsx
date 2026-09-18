@@ -8,7 +8,7 @@ const indiaMapImg = '/images/value-india-map.png';
 export const ValueProps: React.FC = () => {
   return (
     <section className="relative w-full bg-white py-16 sm:py-20">
-      <div className="max-w-6xl mx-auto px-6 flex flex-col gap-10 sm:gap-14">
+      <div className="w-full px-6 sm:px-10 lg:px-[120px] flex flex-col gap-10 sm:gap-14">
         {/* Headline */}
         <div className="flex flex-col items-center gap-4 sm:gap-5 max-w-3xl mx-auto text-center">
           <p className="font-grotesque font-semibold text-3xl sm:text-4xl lg:text-[40px] leading-tight text-[#0a0a0b] max-w-[760px]">

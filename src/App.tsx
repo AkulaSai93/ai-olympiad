@@ -9,6 +9,7 @@ import { ValueProps } from './components/ValueProps';
 import { BuiltForTechnology } from './components/BuiltForTechnology';
 import { JourneyTimeline } from './components/JourneyTimeline';
 import { RecognitionShowcase } from './components/RecognitionShowcase';
+import { SeeWhereYouStand } from './components/SeeWhereYouStand';
 import { GetStartedModal } from './components/GetStartedModal';
 
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother, useGSAP);
@@ -61,6 +62,8 @@ export default function App() {
           />
 
           <RecognitionShowcase />
+
+          <SeeWhereYouStand />
 
           {/* Other sections land here later */}
         </div>

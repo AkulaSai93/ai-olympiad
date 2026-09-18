@@ -10,7 +10,7 @@ interface BuiltForTechnologyProps {
 export const BuiltForTechnology: React.FC<BuiltForTechnologyProps> = ({ onOpenGetStarted }) => {
   return (
     <section className="relative w-full bg-white overflow-hidden">
-      <div className="max-w-6xl mx-auto px-6 py-16 sm:py-20 lg:py-28">
+      <div className="w-full px-6 sm:px-10 lg:px-[120px] py-16 sm:py-20 lg:py-28">
         <div className="relative z-10 flex flex-col gap-6 sm:gap-8 max-w-xl">
           <div className="flex flex-col gap-4 sm:gap-5">
             <p className="font-grotesque font-semibold text-3xl sm:text-4xl lg:text-[40px] leading-tight text-[#0a0a0b] max-w-md">

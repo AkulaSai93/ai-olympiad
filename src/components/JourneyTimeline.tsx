@@ -150,7 +150,7 @@ export const JourneyTimeline: React.FC<JourneyTimelineProps> = ({
     <section ref={sectionRef} className="relative w-full bg-white">
       <div ref={pinRef} className="relative w-full min-h-screen flex items-center overflow-hidden">
         {/* Left: headline, numeral, CTA — in the normal centered container */}
-        <div className="max-w-6xl mx-auto px-6 py-16 w-full">
+        <div className="w-full px-6 sm:px-10 lg:px-[120px] py-16">
           <div className="flex flex-col gap-10 w-full lg:max-w-[500px]">
             <div className="flex flex-col gap-5">
               <p className="font-grotesque font-semibold text-3xl sm:text-4xl lg:text-[40px] leading-tight text-[#0a0a0b]">
