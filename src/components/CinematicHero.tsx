@@ -3,7 +3,6 @@ import { ArrowUpRight } from 'lucide-react';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { FloatingNav } from './FloatingNav';
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -252,9 +251,6 @@ export const CinematicHero: React.FC<CinematicHeroProps> = ({ onOpenGetStarted, 
               'radial-gradient(ellipse 70% 70% at 50% 50%, transparent 45%, rgba(0,0,0,0.9) 100%)',
           }}
         />
-
-        {/* Floating logo + register + hamburger nav */}
-        <FloatingNav onOpenGetStarted={onOpenGetStarted} />
 
         {/* Hero content */}
         <div

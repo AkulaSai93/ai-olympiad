@@ -94,7 +94,7 @@ export const FloatingNav: React.FC<FloatingNavProps> = ({ onOpenGetStarted }) =>
   );
 
   return (
-    <div ref={scopeRef} className="absolute bottom-6 sm:bottom-8 lg:bottom-10 left-1/2 -translate-x-1/2 z-30">
+    <div ref={scopeRef} className="fixed bottom-6 sm:bottom-8 lg:bottom-10 left-1/2 -translate-x-1/2 z-30">
       {/* Transparent full-screen catcher so an outside click/tap closes the menu — no dimming, the page stays visible */}
       <div
         ref={clickCatcherRef}

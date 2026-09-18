@@ -14,6 +14,7 @@ import { StrongerTogether } from './components/StrongerTogether';
 import { FinalCTA } from './components/FinalCTA';
 import { FAQSection } from './components/FAQSection';
 import { Footer } from './components/Footer';
+import { FloatingNav } from './components/FloatingNav';
 import { GetStartedModal } from './components/GetStartedModal';
 
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother, useGSAP);
@@ -82,6 +83,8 @@ export default function App() {
       </div>
 
       {/* Outside the smoothed content so fixed positioning stays viewport-relative */}
+      <FloatingNav onOpenGetStarted={() => setIsGetStartedOpen(true)} />
+
       <GetStartedModal
         isOpen={isGetStartedOpen}
         onClose={() => setIsGetStartedOpen(false)}
