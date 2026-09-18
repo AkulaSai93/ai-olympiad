@@ -16,11 +16,23 @@ const LEGAL_LINKS = ['Terms & Conditions', 'Privacy Policy', 'Contact'];
 export const Footer: React.FC = () => {
   return (
     <footer className="relative w-full overflow-hidden min-h-[420px] sm:min-h-[500px] lg:min-h-[599px]">
-      <img src={footerBg} alt="" className="absolute inset-0 w-full h-full object-cover" />
+      <img
+        src={footerBg}
+        alt=""
+        loading="lazy"
+        decoding="async"
+        className="absolute inset-0 w-full h-full object-cover"
+      />
 
       <div className="relative w-full px-6 sm:px-10 lg:px-[120px] pt-12 sm:pt-16 lg:pt-[74px] pb-8 sm:pb-10 flex flex-col gap-10 sm:gap-12 lg:gap-[50px] items-center">
         <div className="flex flex-col gap-6 sm:gap-7 items-center">
-          <img src={upgradLogo} alt="upGrad School of Technology" className="h-10 sm:h-12 lg:h-[51.25px] w-auto" />
+          <img
+            src={upgradLogo}
+            alt="upGrad School of Technology"
+            loading="lazy"
+            decoding="async"
+            className="h-10 sm:h-12 lg:h-[51.25px] w-auto"
+          />
 
           <div className="flex gap-4 sm:gap-6 items-center">
             {SOCIALS.map(({ Icon, label, href }) => (

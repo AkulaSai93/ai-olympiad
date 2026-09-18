@@ -33,6 +33,8 @@ export const SeeWhereYouStand: React.FC = () => {
         {/* Map + stats */}
         <div className="w-full flex flex-col lg:flex-row gap-12 lg:gap-[82px] items-center">
           <img
+            loading="lazy"
+            decoding="async"
             src={mapImage}
             alt="Map of India showing glowing connections between competing regions"
             className="w-full max-w-[500px] lg:max-w-[655px] h-auto shrink-0"

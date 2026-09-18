@@ -33,6 +33,8 @@ export const BuiltForTechnology: React.FC<BuiltForTechnologyProps> = ({ onOpenGe
       </div>
 
       <img
+        loading="lazy"
+        decoding="async"
         src={portraitImg}
         alt="A student looking upward in thought"
         className="hidden md:block absolute right-[4%] lg:right-[8%] bottom-0 w-[260px] sm:w-[340px] lg:w-[420px] xl:w-[474px] h-auto pointer-events-none select-none"

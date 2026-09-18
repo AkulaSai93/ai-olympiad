@@ -10,6 +10,17 @@ const TOTAL_FRAMES = 240;
 const framePath = (index: number) => `/hero-frames/frame_${String(index).padStart(3, '0')}.jpg`;
 // Scroll distance devoted to the pinned sequence, as a multiple of the viewport height.
 const SCROLL_LENGTH_VH = 4;
+// The full sequence is ~80MB — fetching all 240 frames at once floods the
+// network and slows down everything else on the page. Only this many load
+// eagerly (enough to cover the first stretch of scroll); the rest trickle in
+// via requestIdleCallback so they don't compete with other page resources.
+const EAGER_FRAME_COUNT = 24;
+const IDLE_BATCH_SIZE = 6;
+
+const requestIdle: (cb: () => void) => number =
+  typeof window !== 'undefined' && 'requestIdleCallback' in window
+    ? (cb) => window.requestIdleCallback(cb, { timeout: 1000 })
+    : (cb) => window.setTimeout(cb, 200);
 
 interface CinematicHeroProps {
   onOpenGetStarted: () => void;
@@ -79,7 +90,7 @@ export const CinematicHero: React.FC<CinematicHeroProps> = ({ onOpenGetStarted, 
 
       // --- Preload the frame sequence (acts as the "background video") ---
       const images: HTMLImageElement[] = [];
-      for (let i = 1; i <= TOTAL_FRAMES; i++) {
+      const loadFrame = (i: number) => {
         const img = new Image();
         img.decoding = 'async';
         img.src = framePath(i);
@@ -100,9 +111,30 @@ export const CinematicHero: React.FC<CinematicHeroProps> = ({ onOpenGetStarted, 
             ScrollTrigger.refresh();
           }
         };
-        images.push(img);
+        images[i - 1] = img;
+      };
+
+      for (let i = 1; i <= EAGER_FRAME_COUNT; i++) {
+        loadFrame(i);
       }
       imagesRef.current = images;
+
+      // Trickle-load the remaining frames in small batches during idle time.
+      let nextFrame = EAGER_FRAME_COUNT + 1;
+      const loadNextBatch = () => {
+        if (cancelled) return;
+        const end = Math.min(nextFrame + IDLE_BATCH_SIZE, TOTAL_FRAMES + 1);
+        for (let i = nextFrame; i < end; i++) {
+          loadFrame(i);
+        }
+        nextFrame = end;
+        if (nextFrame <= TOTAL_FRAMES) {
+          requestIdle(loadNextBatch);
+        }
+      };
+      if (nextFrame <= TOTAL_FRAMES) {
+        requestIdle(loadNextBatch);
+      }
 
       const handleResize = () => drawFrame(currentFrameRef.current);
       window.addEventListener('resize', handleResize);

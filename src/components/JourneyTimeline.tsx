@@ -163,7 +163,14 @@ export const JourneyTimeline: React.FC<JourneyTimelineProps> = ({
             </div>
 
             <div className="flex flex-col items-start">
-              <img src={numeralFive} alt="" aria-hidden className="h-24 sm:h-28 w-auto -ml-1" />
+              <img
+                src={numeralFive}
+                alt=""
+                aria-hidden
+                loading="lazy"
+                decoding="async"
+                className="h-24 sm:h-28 w-auto -ml-1"
+              />
               <p className="font-grotesque font-medium text-base sm:text-lg text-[#0a0a0b] max-w-[260px]">
                 One journey from registration to the national final.
               </p>

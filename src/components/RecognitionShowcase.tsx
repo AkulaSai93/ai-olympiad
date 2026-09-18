@@ -87,6 +87,8 @@ export const RecognitionShowcase: React.FC = () => {
                 }}
               >
                 <img
+                  loading="lazy"
+                  decoding="async"
                   src={panel.image}
                   alt={panel.label}
                   className="absolute top-1/2 -translate-y-1/2 max-w-none w-[270px] h-[405px] object-cover transition-[left] duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]"

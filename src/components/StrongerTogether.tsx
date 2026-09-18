@@ -33,6 +33,8 @@ export const StrongerTogether: React.FC = () => {
       <img
         src={bgImage}
         alt=""
+        loading="lazy"
+        decoding="async"
         className="absolute inset-0 w-full h-full object-cover"
       />
 
@@ -56,6 +58,8 @@ export const StrongerTogether: React.FC = () => {
             <img
               src={PARTNERS[0].logo}
               alt={PARTNERS[0].name}
+              loading="lazy"
+              decoding="async"
               className="shrink-0"
               style={{ width: PARTNERS[0].logoWidth, height: PARTNERS[0].logoHeight }}
             />
@@ -68,6 +72,8 @@ export const StrongerTogether: React.FC = () => {
             <img
               src={PARTNERS[1].logo}
               alt={PARTNERS[1].name}
+              loading="lazy"
+              decoding="async"
               className="shrink-0"
               style={{ width: PARTNERS[1].logoWidth, height: PARTNERS[1].logoHeight }}
             />

@@ -37,6 +37,8 @@ export const ValueProps: React.FC = () => {
                 </p>
               </div>
               <img
+                loading="lazy"
+                decoding="async"
                 src={quizCardsImg}
                 alt="A multiple-choice quiz card"
                 className="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 w-[175px] sm:w-[220px] h-auto transition-transform duration-300 ease-out group-hover:scale-110"
@@ -53,6 +55,8 @@ export const ValueProps: React.FC = () => {
                 </p>
               </div>
               <img
+                loading="lazy"
+                decoding="async"
                 src={aiTilesImg}
                 alt="Tiles reading AI, pi, code, and sigma linked in a loop"
                 className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 w-[162px] sm:w-[195px] h-auto transition-transform duration-300 ease-out group-hover:scale-110"
@@ -72,6 +76,8 @@ export const ValueProps: React.FC = () => {
                 </p>
               </div>
               <img
+                loading="lazy"
+                decoding="async"
                 src={medalImg}
                 alt="A medal on a red and black ribbon"
                 className="absolute right-4 sm:right-8 top-0 h-full w-auto py-0 transition-transform duration-300 ease-out group-hover:scale-110"
@@ -89,6 +95,8 @@ export const ValueProps: React.FC = () => {
                 </p>
               </div>
               <img
+                loading="lazy"
+                decoding="async"
                 src={indiaMapImg}
                 alt="A map of India with glowing connection points"
                 className="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 w-[195px] sm:w-[240px] h-auto transition-transform duration-300 ease-out group-hover:scale-110"

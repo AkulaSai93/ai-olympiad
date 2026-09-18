@@ -39,6 +39,8 @@ export const TrustedByMarquee: React.FC = () => {
           {[0, 1].map((copy) => (
             <img
               key={copy}
+              loading="lazy"
+              decoding="async"
               src={LOGO_STRIP_SRC}
               alt={
                 copy === 0
