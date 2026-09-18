@@ -26,7 +26,7 @@ const PANELS: Panel[] = [
       'Get a certificate to validate your skills and achievement. A recognition of your potential and hard work.',
     peekBg: '#f0ece9',
     image: '/images/recognition-2-certificate.png',
-    collapsedImageLeft: -64,
+    collapsedImageLeft: -30,
   },
   {
     label: 'NATIONAL FINAL',
@@ -41,7 +41,7 @@ const PANELS: Panel[] = [
       'Gain visibility, connect with like-minded peers, and unlock new learning opportunities.',
     peekBg: '#d4d5da',
     image: '/images/recognition-4-pathways.png',
-    collapsedImageLeft: -104,
+    collapsedImageLeft: -120,
   },
 ];
 
@@ -89,19 +89,32 @@ export const RecognitionShowcase: React.FC = () => {
                 <img
                   src={panel.image}
                   alt={panel.label}
-                  className="absolute top-1/2 -translate-y-1/2 w-[270px] h-[405px] object-cover transition-[left] duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]"
+                  className="absolute top-1/2 -translate-y-1/2 max-w-none w-[270px] h-[405px] object-cover transition-[left] duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]"
                   style={{ left: isActive ? 0 : panel.collapsedImageLeft }}
                 />
 
-                {/* Top-down gradient for text legibility */}
-                <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/10 to-transparent pointer-events-none" />
-
-                {/* Collapsed: vertical rotated label */}
+                {/* Top-down gradient for text legibility. Plain inline
+                    linear-gradient (sRGB) — Tailwind v4's bg-gradient-to-b
+                    utility interpolates `in oklab` by default, which washes
+                    the midtone out to gray instead of a clean black fade. */}
                 <div
-                  className="absolute inset-0 flex items-center justify-start pl-4 transition-opacity duration-300"
+                  className="absolute inset-0 pointer-events-none"
+                  style={{
+                    background: 'linear-gradient(to bottom, rgb(0,0,0) 0%, rgba(0,0,0,0) 100%)',
+                  }}
+                />
+
+                {/* Collapsed: vertical rotated label, anchored near the top
+                    (14px), not vertically centered in the panel. Matches
+                    Figma exactly: the label WRAPS within a 94px width
+                    (no nowrap) rather than staying on one line — forcing it
+                    to one line is what was pushing long labels like
+                    "Official Certificate" way past the panel and clipping. */}
+                <div
+                  className="absolute left-3.5 top-3.5 w-11 h-[94px] flex items-center justify-center transition-opacity duration-300"
                   style={{ opacity: isActive ? 0 : 1 }}
                 >
-                  <span className="-rotate-90 whitespace-nowrap font-grotesque font-semibold text-lg text-white origin-left">
+                  <span className="-rotate-90 font-grotesque font-semibold text-lg text-white w-[94px]">
                     {panel.label}
                   </span>
                 </div>
