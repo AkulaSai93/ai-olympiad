@@ -1,0 +1,6 @@
+{
+  "name": "Team Workflow Landing Page",
+  "description": "A modern landing page with a curved 3D team portrait gallery and warm orange gradient background.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

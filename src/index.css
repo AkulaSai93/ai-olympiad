@@ -1,0 +1,92 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    color: #111111;
+  }
+}
+
+.font-serif-display {
+  font-family: 'Instrument Serif', 'Playfair Display', Georgia, serif;
+}
+
+.font-sans-display {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+}
+
+.font-grotesque {
+  font-family: 'Bricolage Grotesque', 'Plus Jakarta Sans', system-ui, sans-serif;
+}
+
+/* Background matching Image 2: Vibrant Orange-Red Vignette Gradient */
+.bg-orange-gradient {
+  background: 
+    radial-gradient(circle at 35% 45%, #FF6200 0%, #FF4500 35%, #D62200 65%, #8B0000 90%, #520000 100%),
+    linear-gradient(135deg, #FF6800 0%, #E63900 50%, #990000 100%);
+  background-blend-mode: normal;
+}
+
+/* Optional subtle organic texture overlay for realistic analog paper/film grain */
+.bg-grain {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.035'/%3E%3C/svg%3E");
+}
+
+/* 3D Curved Perspective Gallery Container */
+.perspective-container {
+  perspective: 1400px;
+  perspective-origin: 50% 50%;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+/* Smooth custom shadow for cards */
+.shadow-curved-card {
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.45), 0 0 1px rgba(255, 255, 255, 0.1) inset;
+}
+
+/* Dark Studio Mode: Sleek obsidian canvas with subtle ambient orange glow */
+.bg-dark-studio {
+  background: 
+    radial-gradient(circle at 50% -20%, rgba(255, 98, 0, 0.15) 0%, transparent 60%),
+    radial-gradient(circle at 85% 60%, rgba(214, 34, 0, 0.08) 0%, transparent 50%),
+    #0c0c0e;
+}
+
+/* Vertical divider lines between feature blocks */
+.divider-line {
+  border-right: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+@media (max-width: 768px) {
+  .divider-line {
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  }
+}
+
+/* Infinite logo marquee */
+@keyframes marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-track {
+  animation: marquee-scroll 14s linear infinite;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
+}
